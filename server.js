@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
+const isSignedIn = require('./middleware/is-signed-in.js')
+const passUserToView = require('./middleware/pasword-user-to-view.js')
 
 const authController = require('./controllers/auth.js');
 
@@ -28,6 +30,7 @@ app.use(
   })
 );
 
+app.use(passUserToView)
 app.get('/', (req, res) => {
   res.render('index.ejs', {
     user: req.session.user,
@@ -43,7 +46,7 @@ app.get('/vip-lounge', (req, res) => {
 });
 
 app.use('/auth', authController);
-
+app.use(isSignedIn)
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
