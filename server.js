@@ -9,7 +9,10 @@ const session = require('express-session');
 const isSignedIn = require('./middleware/is-signed-in.js')
 const passUserToView = require('./middleware/pasword-user-to-view.js')
 
+//Improt Controller
+
 const authController = require('./controllers/auth.js');
+const applicationCtrl = require('./controllers/applications.js')
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -47,6 +50,9 @@ app.get('/vip-lounge', (req, res) => {
 
 app.use('/auth', authController);
 app.use(isSignedIn)
+app.use('/users/userId/applications' , applicationCtrl)
+
+
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
