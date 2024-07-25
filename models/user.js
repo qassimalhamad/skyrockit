@@ -1,14 +1,28 @@
 const mongoose = require('mongoose');
-const applicationSchema = mongoose.Schema({
-  company: String,
-  title: String,
-  date: String,
-  notes: String,
-  postingLink: String,
+// models/user.js
+
+const applicationSchema = new mongoose.Schema({
+  company: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  notes: {
+    type: String,
+  },
+  postingLink: {
+    type: String,
+  },
+
   status: {
-    enum: [ 'interested' , 'applied' , 'interviewwing' , 'rejected' , 'accepted' ] 
+    type: String,
+    enum: ['interested', 'applied', 'interviewing', 'rejected', 'accepted'],
   }
-},{timestamps: true})
+});
+
 const userSchema = mongoose.Schema({
   username: {
     type: String,
@@ -18,7 +32,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  application: [applicationSchema] //embeded
+  applications: [applicationSchema] //embeded
 });
 
 const User = mongoose.model('User', userSchema);

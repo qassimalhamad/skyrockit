@@ -1,0 +1,18 @@
+body{
+    background: rgb(188,252,70); 
+    background: radial-gradient(circle, rgba(188,252,70,1) 0%, rgba(36,53,144,1) 100%); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    gap: 8px;
+}
